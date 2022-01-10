@@ -154,7 +154,7 @@
     <dependency>
       <groupId>org.jenkins-ci.plugins.workflow</groupId>
       <artifactId>workflow-multibranch</artifactId>
-      <version>2.22</version>
+      <version>704.v8f039a_e2e8cf</version>
       <scope>test</scope>
     </dependency>
     <dependency>
