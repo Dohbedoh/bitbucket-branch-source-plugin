@@ -1197,11 +1197,13 @@ public class BitbucketSCMSource extends SCMSource {
         }
 
         @SuppressWarnings("unused") // used By stapler
-        public static FormValidation doCheckServerUrl(@AncestorInPath SCMSourceOwner context, @QueryParameter String value) {
+        public static FormValidation doCheckServerUrl(@AncestorInPath SCMSourceOwner context, @QueryParameter String serverUrl) {
             AccessControlled contextToCheck = context == null ? Jenkins.get() : context;
             contextToCheck.checkPermission(Item.CONFIGURE);
-            if (BitbucketEndpointConfiguration.get().findEndpoint(value) == null) {
-                return FormValidation.error("Unregistered Server: " + value);
+            if(Util.fixEmptyAndTrim(serverUrl) != null) {
+                if (BitbucketEndpointConfiguration.get().findEndpoint(serverUrl) == null) {
+                    return FormValidation.error("Unregistered Server: " + serverUrl);
+                }
             }
             return FormValidation.ok();
         }
